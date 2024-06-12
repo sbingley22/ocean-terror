@@ -57,7 +57,7 @@ function App() {
       {page==9 && <Game isMobile={isMobile} setPage={setPage} setScores={setScores} />}
 
       <audio ref={bgmRef} loop>
-        <source src="./heavy-rain.wav" type='audio/wav' />
+        <source src="./heavy-rain.wav" type='audio/mp3' />
       </audio>
 
       <button 
