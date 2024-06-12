@@ -13,7 +13,6 @@ function App() {
 
     const handleResize = () => {
       setIsMobile(mediaQuery.matches)
-      console.log("isMobile: ", mediaQuery.matches)
     }
 
     mediaQuery.addEventListener('change', handleResize)
@@ -57,7 +56,7 @@ function App() {
       {page==9 && <Game isMobile={isMobile} setPage={setPage} setScores={setScores} />}
 
       <audio ref={bgmRef} loop>
-        <source src="./heavy-rain.wav" type='audio/mp3' />
+        <source src="./heavy-rain.mp3" type='audio/mp3' />
       </audio>
 
       <button 
