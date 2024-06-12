@@ -23,7 +23,7 @@ function App() {
     }
   }, [])
 
-  const [page, setPage] = useState(9)
+  const [page, setPage] = useState(0)
   const [scores, setScores] = useState({lastScore: 0, highScore: 0})
 
   return (
