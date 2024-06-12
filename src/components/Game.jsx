@@ -4,6 +4,7 @@ import { Suspense, useRef } from "react"
 import Woman from "./Woman"
 import { Environment } from "@react-three/drei"
 import Ocean from "./Ocean"
+import Mermaid from "./Mermaid"
 
 const Game = ({ isMobile, setPage, setScores }) => {
   const gameContainer = useRef()
@@ -24,6 +25,10 @@ const Game = ({ isMobile, setPage, setScores }) => {
           <Ocean />
 
           <Woman anim={animWoman} />
+
+          <Mermaid index={0} />
+          <Mermaid index={1} />
+          <Mermaid index={2} />
 
         </Suspense>
       </Canvas>

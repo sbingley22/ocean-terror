@@ -25,9 +25,9 @@ const Ocean = () => {
   const rocks = useMemo(() => {
     const rockClones = []
     const rockPositions = [
-      new Vector3(5, -3, 20),
-      new Vector3(-15, -3.1, -25),
-      new Vector3(10, -2.9, 30),
+      new Vector3(5, -3.5, 20),
+      new Vector3(-15, -3.6, -25),
+      new Vector3(10, -3.9, 30),
     ]
 
     rockPositions.forEach((position) => {
@@ -51,11 +51,11 @@ const Ocean = () => {
     const scrollRocks = () => {
       rocks.forEach(rock => {
         rock.position.z -= delta * speed.current
-        if (rock.position.z <= -40) {
+        if (rock.position.z <= -50) {
           //randomize rock pos
           let rand = Math.random() * 20
           rock.position.z = 20 + rand
-          rand = (Math.random() - 0.5) * 15
+          rand = (Math.random() - 0.5) * 20
           rock.position.x = rand
         }
       })
