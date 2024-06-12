@@ -30,7 +30,7 @@ const Mermaid = ({ index, isMobile, touchOn, touchArea, health }) => {
 
     if (group.current) {
       //debugger
-      const xSpace = isMobile? 8 : 12
+      const xSpace = isMobile? 6 : 11
       group.current.position.x = (index*xSpace) -xSpace
       group.current.position.y = -3.2
       group.current.position.z = -14

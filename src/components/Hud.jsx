@@ -15,7 +15,7 @@ const Hud = ({ health, score }) => {
   }, [health, score])
   
   return (
-    <div className="absolute top-0 left-0 w-screen flex justify-between items-center text-blue-200 bg-gradient-to-b from-black to-transparent pb-2">
+    <div className="absolute top-0 left-0 w-screen flex justify-between items-center text-blue-200 bg-gradient-to-b from-black to-transparent pb-2 select-none pointer-events-none">
       <p className="m-3 text-3xl">Hull: {healthState}</p>
       <p className="m-3 text-3xl">Score: {scoreState}</p>
     </div>
