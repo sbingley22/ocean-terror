@@ -8,6 +8,7 @@ import { Vector3 } from 'three'
 const Ocean = () => {
   const { nodes } = useGLTF(glb)
   const speed = useRef(2.5)
+  const womanRef = useRef(null)
 
   // Initial setup
   useEffect(()=>{
@@ -40,6 +41,12 @@ const Ocean = () => {
   }, [nodes])
 
   useFrame((state,delta)=>{
+    if (!womanRef.current) {
+      womanRef.current = state.scene.getObjectByName("womanGroup")
+      return
+    }
+    speed.current += delta / 100
+
     const scrollOcean = () => {
       nodes.sea.position.z -= delta * speed.current
 
@@ -50,14 +57,28 @@ const Ocean = () => {
 
     const scrollRocks = () => {
       rocks.forEach(rock => {
+        let respawn = false
         rock.position.z -= delta * speed.current
+        
         if (rock.position.z <= -50) {
+          respawn = true
+        }
+        else if (rock.position.z > -1 && rock.position.z < 1) {
+          if (Math.abs(rock.position.x - womanRef.current.position.x) < 4) {
+            respawn = true
+            //Damage Player
+            womanRef.current.actionFlag = "hurt"
+          }
+        }
+
+        if (respawn) {
           //randomize rock pos
           let rand = Math.random() * 20
           rock.position.z = 20 + rand
           rand = (Math.random() - 0.5) * 20
           rock.position.x = rand
         }
+        
       })
     }
     scrollRocks()

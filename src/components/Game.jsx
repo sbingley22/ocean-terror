@@ -11,6 +11,8 @@ const Game = ({ isMobile, setPage, setScores }) => {
   const animWoman = useRef("row")
   const touchArea = useRef({x:0, y:0})
   const touchOn = useRef(false)
+  const health = useRef(100)
+  const score = useRef(0)
 
   //Click Listener
   useEffect(()=>{
@@ -75,11 +77,11 @@ const Game = ({ isMobile, setPage, setScores }) => {
 
           <Ocean />
 
-          <Woman anim={animWoman} touchOn={touchOn} touchArea={touchArea} />
+          <Woman anim={animWoman} touchOn={touchOn} touchArea={touchArea} health={health} score={score} />
 
-          <Mermaid index={0} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} />
-          <Mermaid index={1} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} />
-          <Mermaid index={2} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} />
+          <Mermaid index={0} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} health={health} />
+          <Mermaid index={1} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} health={health} />
+          <Mermaid index={2} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} health={health} />
 
         </Suspense>
       </Canvas>

@@ -6,7 +6,7 @@ import { useSkinnedMeshClone } from './SkinnedMeshClone'
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
-const Mermaid = ({ index, isMobile, touchOn, touchArea }) => {
+const Mermaid = ({ index, isMobile, touchOn, touchArea, health }) => {
   const { scene, nodes, animations } = useSkinnedMeshClone(glb)
   // eslint-disable-next-line no-unused-vars
   const { actions, names, mixer } = useAnimations(animations, scene)
@@ -66,6 +66,8 @@ const Mermaid = ({ index, isMobile, touchOn, touchArea }) => {
         const rotX = state.camera.rotation.x
         const rotY = state.camera.rotation.y
         const rotZ = state.camera.rotation.z
+
+        health.current -= delta
 
         if (index == 0) {
           //debugger
