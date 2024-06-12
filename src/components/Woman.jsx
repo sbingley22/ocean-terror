@@ -5,7 +5,7 @@ import glb from '../assets/woman.glb?url'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 
-const Woman = ({ anim, touchOn, touchArea, health, score }) => {
+const Woman = ({ anim, touchOn, touchArea, health, score, setPage, setScores }) => {
   const { scene, nodes, animations } = useGLTF(glb)
   // eslint-disable-next-line no-unused-vars
   const { actions, mixer, names } = useAnimations(animations, scene)
@@ -16,7 +16,7 @@ const Woman = ({ anim, touchOn, touchArea, health, score }) => {
   useEffect(()=>{
     console.log("Woman", nodes)
 
-    group.current.position.z = -2
+    group.current.position.z = -3
     group.current.position.y = -0.3
 
     actions[anim.current].reset().fadeIn(0.2).play()
@@ -44,8 +44,8 @@ const Woman = ({ anim, touchOn, touchArea, health, score }) => {
       if (!touchOn.current) return
       if (!group.current) return
 
-      if (touchArea.current.y > 0.4) {
-        const boatSpeed = 4
+      if (touchArea.current.y > 0.35) {
+        const boatSpeed = 8
         if (touchArea.current.x < 0.5) {
           group.current.position.x -= delta * boatSpeed
         } else {
@@ -60,10 +60,9 @@ const Woman = ({ anim, touchOn, touchArea, health, score }) => {
         anim.current = "hurt"
         group.current.actionFlag = "none"
         health.current -= 30
-        console.log(health.current)
       }
     }
-    actionFlag()
+    actionFlag()    
 
     const updateAnimation = () => {
       if (!actions) return
@@ -77,6 +76,18 @@ const Woman = ({ anim, touchOn, touchArea, health, score }) => {
 
     }
     updateAnimation()
+
+    if (health.current <= 0) {
+      setScores(prevScores => ({
+        lastScore: Math.round(score.current),
+        highScore: Math.max(prevScores.highScore, Math.round(score.current))
+      }))
+
+      setTimeout(()=>{
+        setPage(2)
+      },500)
+    }
+
   })
 
   return (

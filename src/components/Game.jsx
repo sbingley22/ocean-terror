@@ -5,6 +5,7 @@ import Woman from "./Woman"
 import { Environment } from "@react-three/drei"
 import Ocean from "./Ocean"
 import Mermaid from "./Mermaid"
+import Hud from "./Hud"
 
 const Game = ({ isMobile, setPage, setScores }) => {
   const gameContainer = useRef()
@@ -77,7 +78,7 @@ const Game = ({ isMobile, setPage, setScores }) => {
 
           <Ocean />
 
-          <Woman anim={animWoman} touchOn={touchOn} touchArea={touchArea} health={health} score={score} />
+          <Woman anim={animWoman} touchOn={touchOn} touchArea={touchArea} health={health} score={score} setPage={setPage} setScores={setScores} />
 
           <Mermaid index={0} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} health={health} />
           <Mermaid index={1} isMobile={isMobile} touchOn={touchOn} touchArea={touchArea} health={health} />
@@ -85,6 +86,8 @@ const Game = ({ isMobile, setPage, setScores }) => {
 
         </Suspense>
       </Canvas>
+
+      <Hud health={health} score={score} />
     </div>
   )
 }

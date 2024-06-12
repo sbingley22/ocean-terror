@@ -45,7 +45,7 @@ const Ocean = () => {
       womanRef.current = state.scene.getObjectByName("womanGroup")
       return
     }
-    speed.current += delta / 100
+    speed.current += delta / 20
 
     const scrollOcean = () => {
       nodes.sea.position.z -= delta * speed.current
@@ -63,7 +63,7 @@ const Ocean = () => {
         if (rock.position.z <= -50) {
           respawn = true
         }
-        else if (rock.position.z > -1 && rock.position.z < 1) {
+        else if (rock.position.z > -1.5 && rock.position.z < 0) {
           if (Math.abs(rock.position.x - womanRef.current.position.x) < 4) {
             respawn = true
             //Damage Player

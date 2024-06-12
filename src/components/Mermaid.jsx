@@ -32,13 +32,13 @@ const Mermaid = ({ index, isMobile, touchOn, touchArea, health }) => {
       //debugger
       const xSpace = isMobile? 8 : 12
       group.current.position.x = (index*xSpace) -xSpace
-      group.current.position.y = -3
-      group.current.position.z = -16
+      group.current.position.y = -3.2
+      group.current.position.z = -14
 
       if (index == 0) {
         group.current.rotation.y = Math.PI / 8
       } else if (index == 1) {
-        group.current.position.z = -10
+        group.current.position.z = -11
       } else if (index == 2) {
         group.current.rotation.y = -Math.PI / 8
       }
@@ -51,9 +51,9 @@ const Mermaid = ({ index, isMobile, touchOn, touchArea, health }) => {
     timer.current += delta
 
     if (action.current == "idle") {
-      if (timer.current > 2) {
+      if (timer.current > 1.5) {
         const rand = Math.random()
-        if (rand < 0.01) {
+        if (rand < 0.005) {
           action.current = "attacking"
           group.current.position.y = -1
           timer.current = 0
@@ -67,11 +67,9 @@ const Mermaid = ({ index, isMobile, touchOn, touchArea, health }) => {
         const rotY = state.camera.rotation.y
         const rotZ = state.camera.rotation.z
 
-        health.current -= delta
+        health.current -= delta * 2
 
         if (index == 0) {
-          //debugger
-          //console.log(rotY)
           const shakeVal = rotY + (shakeDir.current * delta * 0.1)
           state.camera.rotation.set(rotX, shakeVal, rotZ)
           if (rotY > 0.05) shakeDir.current = -1
